@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 300px;
+            height: auto;
+            margin: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        .lightbox img.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+        }
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>KEDI Photo Gallery</h1>
+    <div class="gallery">
+        <img src="68 Strong Studio 0788576045.jpg" alt="68 Strong Studio 0788576045" onclick="openLightbox(this.src)">
+        <img src="69 Strong Studio 0788576045.jpg" alt="69 Strong Studio 0788576045" onclick="openLightbox(this.src)">
+        <img src="71 Strong Studio 0788576045.jpg" alt="71 Strong Studio 0788576045" onclick="openLightbox(this.src)">
+        <img src="big love.jpg" alt="big love" onclick="openLightbox(this.src)">
+        <img src="DSC_3554.jpg" alt="DSC_3554" onclick="openLightbox(this.src)">
+        <img src="DSC_3591.jpg" alt="DSC_3591" onclick="openLightbox(this.src)">
+        <img src="just friend.jpeg" alt="just friend" onclick="openLightbox(this.src)">
+        <img src="kedi mine.jpeg" alt="kedi mine" onclick="openLightbox(this.src)">
+        <img src="kedi sit.jpeg" alt="kedi sit" onclick="openLightbox(this.src)">
+        <img src="kedi.jpg" alt="kedi" onclick="openLightbox(this.src)">
+        <img src="my kedi ever.jpg" alt="my kedi ever" onclick="openLightbox(this.src)">
+        <img src="my KEDI.jpeg" alt="my KEDI" onclick="openLightbox(this.src)">
+        <img src="WhatsApp Image 2025-12-29 at 5.16.48 PM.jpeg" alt="WhatsApp Image 2025-12-29 at 5.16.48 PM" onclick="openLightbox(this.src)">
+        <img src="WhatsApp Image 2025-12-29 at 5.16.49 PM.jpeg" alt="WhatsApp Image 2025-12-29 at 5.16.49 PM" onclick="openLightbox(this.src)">
+        <img src="WhatsApp Image 2025-12-29 at 5.16.50 PM.jpeg" alt="WhatsApp Image 2025-12-29 at 5.16.50 PM" onclick="openLightbox(this.src)">
+        <img src="WhatsApp Image 2025-12-30 at 9.01.27 AM.jpeg" alt="WhatsApp Image 2025-12-30 at 9.01.27 AM" onclick="openLightbox(this.src)">
+        <img src="WhatsApp Image 2025-12-30 at 9.01.28 AM.jpeg" alt="WhatsApp Image 2025-12-30 at 9.01.28 AM" onclick="openLightbox(this.src)">
+        <img src="yvette.jpeg" alt="yvette" onclick="openLightbox(this.src)">
+    </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" src="" alt="" onclick="zoomImage(event)">
+    </div>
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-img').classList.remove('zoomed');
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+        function zoomImage(event) {
+            event.stopPropagation();
+            const img = document.getElementById('lightbox-img');
+            img.classList.toggle('zoomed');
+        }
+    </script>
+</body>
+</html>
